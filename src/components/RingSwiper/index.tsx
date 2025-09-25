@@ -24,8 +24,6 @@ const RingSwiper: React.FC<RingSwiperProps> = ({ periodsData }) => {
 
   return (
     <div className={styles["main"]}>
-      {/* Индикатор слайдов 01/06 */}
-
       <Swiper
         modules={[Navigation, Pagination]}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
@@ -43,21 +41,29 @@ const RingSwiper: React.FC<RingSwiperProps> = ({ periodsData }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div>
-        <div className={styles["data-dots"]}>
-          {padNumber(activeIndex + 1)} / {padNumber(periodsData.length)}
+      <div className={styles["control"]}>
+        <div className={styles["page"]}>
+          <div className={styles["page"]}>
+            <span className={styles["number"]}>
+              {padNumber(activeIndex + 1)}
+            </span>
+            <span className={styles["slash"]}>/</span>
+            <span className={styles["number"]}>
+              {padNumber(periodsData.length)}
+            </span>
+          </div>
         </div>
         <div className={styles["custom-navigation"]}>
-          <button className="custom-prev">
+          <button className={`${styles.prev} custom-prev`}>
             <Arrow />
           </button>
-          <button className="custom-next">
+          <button className={`${styles.next} custom-next`}>
             <Arrow />
           </button>
         </div>
       </div>
 
-      <div className="custom-pagination"></div>
+      <div className={`${styles.pagination} custom-pagination`}></div>
     </div>
   );
 };
