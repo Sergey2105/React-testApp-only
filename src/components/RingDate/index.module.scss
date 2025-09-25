@@ -1,0 +1,43 @@
+.date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  //   justify-content: space-between;
+  gap: 20px;
+  &-start {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: auto;
+    letter-spacing: -0.02em;
+    color: #5d5fef;
+  }
+  &-end {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: auto;
+    letter-spacing: -0.02em;
+    color: #ef5da8;
+  }
+}
+
+// @media screen and (max-width: 768px) {
+//   .date {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 80px;
+//     &-start {
+//       font-size: 200px;
+//       font-weight: 600;
+//       line-height: 160px;
+//       letter-spacing: -0.02em;
+//       color: #5d5fef;
+//     }
+//     &-end {
+//       font-size: 200px;
+//       font-weight: 600;
+//       line-height: 160px;
+//       letter-spacing: -0.02em;
+//       color: #ef5da8;
+//     }
+//   }
+// }
