@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import { gsap } from "gsap";
-
-interface IRingData {
-  periodsData: IData;
-}
+import AnimatedNumber from "../AnimatedNumber";
 
 const RingDate = (props: IRingData) => {
-  const { periodsData } = props;
-  console.log(periodsData);
-  const [currentYear, setCurrentYear] = useState(periodsData.dateStart);
+  const { dateStart, dateEnd } = props;
 
   return (
-    <div>
-      <div className={styles.date}>
-        <span className={styles["date-start"]}>{periodsData.dateStart}</span>
-        <span className={styles["date-end"]}>{periodsData.dateEnd}</span>
-      </div>
+    <div className={styles.date}>
+      <AnimatedNumber
+        targetValue={dateStart}
+        duration={2}
+        ease="power3.out"
+        className={styles["date-start"]}
+      />
+      <AnimatedNumber
+        targetValue={dateEnd}
+        duration={2}
+        ease="power3.out"
+        className={styles["date-end"]}
+      />
     </div>
   );
 };

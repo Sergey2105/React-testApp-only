@@ -1,10 +1,10 @@
 .data-dots {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: auto;
   color: #42567a;
 }
-.custom-navigation {
+.navigation {
   display: flex;
   gap: 8px;
   .prev,
@@ -23,18 +23,88 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
+    @media screen and (min-width: 768px) {
+      height: 50px;
+      width: 50px;
+      svg {
+        scale: 2;
+      }
+    }
   }
 
   .next {
-    transform: rotate(180deg);
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
+}
+.page {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  .number {
+    width: 2ch;
+    font-size: 14px;
+    font-weight: 400;
+    color: #42567a;
+  }
+
+  .slash {
+    width: 1ch;
+    font-size: 14px;
+    font-weight: 400;
+    color: #42567a;
+  }
+}
+.line {
+  height: 1px;
+  background-color: #c7cdd9;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+.date {
+  margin: 56px 0;
+}
+.info {
+  margin: 0 -20px;
+  margin-top: 20px;
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    overflow: visible;
+  }
+}
+.theme {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 120%;
+  color: #42567a;
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 }
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 20px;
+  position: absolute;
+  top: 50% !important;
+  bottom: auto !important;
 
   &:global(.custom-pagination) {
     :global {
@@ -44,6 +114,7 @@
         background: #42567a;
         opacity: 0.3;
         transition: opacity 0.3s ease, transform 0.3s ease;
+        margin: 0 5px !important;
 
         &-active {
           opacity: 1;
@@ -51,22 +122,24 @@
       }
     }
   }
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 }
-.control {
+.footer {
+  position: relative;
+  width: 280px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
+}
+.wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.page {
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  .number {
-    width: 2ch;
-  }
-
-  .slash {
-    width: 1ch;
+  gap: 80px;
+  @media screen and (min-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 56px;
   }
 }
