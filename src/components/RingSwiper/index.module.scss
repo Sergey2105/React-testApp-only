@@ -7,8 +7,8 @@
 .navigation {
   display: flex;
   gap: 8px;
-  .prev,
-  .next {
+  &-prev,
+  &-next {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
     }
   }
 
-  .next {
+  &-next {
     svg {
       transform: rotate(180deg);
     }
@@ -48,18 +48,18 @@
     gap: 20px;
   }
 }
-.page {
+.pages {
   display: flex;
   align-items: center;
   text-align: center;
-  .number {
+  &-number {
     width: 2ch;
     font-size: 14px;
     font-weight: 400;
     color: #42567a;
   }
 
-  .slash {
+  &-slash {
     width: 1ch;
     font-size: 14px;
     font-weight: 400;
@@ -76,18 +76,19 @@
 .date {
   margin: 50px 0;
   @media screen and (min-width: 768px) {
-    margin: 130px 0;
+    margin: 90px 0 130px 0;
   }
 }
 .info {
   margin: 0 -20px;
   margin-top: 20px;
   overflow: hidden;
-  min-height: 150px;
+  max-height: 115px;
 
   @media screen and (min-width: 768px) {
     margin: 0;
     overflow: visible;
+    max-height: 135px;
   }
 }
 .theme {
@@ -110,7 +111,7 @@
   top: 50% !important;
   bottom: auto !important;
 
-  &:global(.custom-pagination) {
+  &:global(.pagination) {
     :global {
       .swiper-pagination-bullet {
         width: 6px;

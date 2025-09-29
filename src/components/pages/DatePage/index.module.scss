@@ -3,6 +3,11 @@
   min-height: 100vh;
   position: relative;
   @media screen and (min-width: 768px) {
+    margin: 0;
+    margin-left: 320px;
+    margin-right: 180px;
+    padding: 0 80px;
+
     &::before {
       content: "";
       position: absolute;
@@ -12,6 +17,7 @@
       height: 100%;
       background-color: #c7cdd9;
       transform: translateY(-50%);
+      z-index: -10;
     }
 
     &:after {
@@ -23,55 +29,47 @@
       height: 100%;
       background-color: #c7cdd9;
       transform: translateY(-50%);
+      z-index: -10;
     }
   }
-}
-.title {
-  position: relative;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 120%;
-  color: #42567a;
-  padding-top: 60px;
-  margin: 0;
-}
-.date {
-  margin: 0 auto;
-}
-@media screen and (min-width: 768px) {
-  .main {
-    margin: 0;
-    margin-left: 320px;
-    margin-right: 180px;
-    padding: 0 80px;
-  }
-  .title {
-    font-size: 56px;
-    padding-top: 170px;
-    &::before {
-      content: "";
+  &-line {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: block;
       position: absolute;
-
-      left: -80px;
+      left: 50%;
       top: 0;
-      top: calc(170px + 0.1em);
-      width: 2px;
-      height: 120px;
-      background: linear-gradient(180deg, #3877ee 0%, #ef5da8 100%);
+      width: 1px;
+      height: 100%;
+      background-color: #c7cdd9;
+      transform: translateX(-50%);
     }
   }
-}
+  &-title {
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #42567a;
+    padding-top: 60px;
+    margin: 0;
+    @media screen and (min-width: 768px) {
+      font-size: 56px;
+      padding-top: 170px;
+      &::before {
+        content: "";
+        position: absolute;
 
-.center-line {
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background-color: #c7cdd9;
-    transform: translateX(-50%);
+        left: -80px;
+        top: 0;
+        top: calc(170px + 0.1em);
+        width: 2px;
+        height: 120px;
+        background: linear-gradient(180deg, #3877ee 0%, #ef5da8 100%);
+      }
+    }
+  }
+  &-date {
+    margin: 0 auto;
   }
 }

@@ -3,42 +3,43 @@ import styles from "./index.module.scss";
 import { gsap } from "gsap";
 import AnimatedNumber from "../AnimatedNumber";
 
-const RingDate = (props: {
-  dateStart: number;
-  dateEnd: number;
-  periodsData: IData[];
-  activeIndex: number;
-  onDotClick: (index: number) => void;
-}) => {
-  const { dateStart, dateEnd, periodsData, activeIndex, onDotClick } = props;
+const TARGET_POSITION = 60;
 
-  const circleRef = useRef<HTMLDivElement>(null);
-  const buttonsContainerRef = useRef<HTMLDivElement>(null);
+const RingDate = (props: IRingDate) => {
+  const { dateStart, dateEnd, periodsData, activeIndex, onDotClick } = props;
+  const buttonsRef = useRef<HTMLDivElement>(null);
+
   const [finishedIndex, setFinishedIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const [currentRotation, setCurrentRotation] = useState(60);
+  useEffect(() => {
+    rotateCircle(activeIndex);
+  }, [activeIndex]);
 
   const buttonPositions = Array.from(
     { length: periodsData.length },
     (_, i) => (360 / periodsData.length) * i
   );
 
-  const targetPosition = 60;
-  const [currentRotation, setCurrentRotation] = useState(60);
-
   const rotateCircle = (slideIndex: number) => {
     setFinishedIndex(null);
+    gsap.killTweensOf(buttonsRef.current);
+
     const currentButtonPosition = buttonPositions[slideIndex];
-    const targetRotation = targetPosition - currentButtonPosition;
+    const targetRotation = TARGET_POSITION - currentButtonPosition;
 
     let rotationDiff = targetRotation - currentRotation;
     rotationDiff = ((rotationDiff % 360) + 360) % 360;
 
-    if (rotationDiff > 180) rotationDiff = rotationDiff - 360;
-    if (rotationDiff <= 0) rotationDiff += 360;
+    if (rotationDiff > 180) {
+      rotationDiff = rotationDiff - 360;
+    }
 
     const newRotation = currentRotation + rotationDiff;
     setCurrentRotation(newRotation);
 
-    gsap.to(buttonsContainerRef.current, {
+    gsap.to(buttonsRef.current, {
       rotation: newRotation,
       duration: 2,
       ease: "power2.out",
@@ -49,31 +50,24 @@ const RingDate = (props: {
     });
   };
 
-  useEffect(() => {
-    rotateCircle(activeIndex);
-  }, [activeIndex]);
-
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <>
-      <div className={styles["date"]}>
-        <AnimatedNumber
-          targetValue={dateStart}
-          duration={2}
-          ease="power3.out"
-          className={styles["date-start"]}
-        />
-        <AnimatedNumber
-          targetValue={dateEnd}
-          duration={2}
-          ease="power3.out"
-          className={styles["date-end"]}
-        />
-      </div>
-      <div className={styles.wrapper}>
-        <div className={styles.circleNav} ref={circleRef}>
-          <div className={styles.buttons} ref={buttonsContainerRef}>
+    <div className={styles["date"]}>
+      <div className={styles["line"]}></div>
+      <AnimatedNumber
+        targetValue={dateStart}
+        duration={2}
+        ease="power3.out"
+        className={styles["date-start"]}
+      />
+      <AnimatedNumber
+        targetValue={dateEnd}
+        duration={2}
+        ease="power3.out"
+        className={styles["date-end"]}
+      />
+      <div className={styles["wrapper"]}>
+        <div className={styles["circle"]}>
+          <div className={styles["circle-buttons"]} ref={buttonsRef}>
             {periodsData.map((_, index) => {
               const angle = buttonPositions[index];
               const radius = 264;
@@ -84,51 +78,34 @@ const RingDate = (props: {
               const isHovered = hoveredIndex === index;
               const shouldShowLarge = isActive || isHovered;
 
-              const [showNumber, setShowNumber] = useState(false);
-
-              useEffect(() => {
-                let timer: NodeJS.Timeout;
-
-                if (shouldShowLarge) {
-                  timer = setTimeout(() => setShowNumber(true), 100);
-                } else {
-                  setShowNumber(false);
-                }
-
-                return () => clearTimeout(timer);
-              }, [shouldShowLarge]);
-
               return (
                 <div
-                  className={styles["dot-wrapper"]}
+                  className={styles["dots"]}
                   key={index}
                   style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
                     transform: `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${-currentRotation}deg)`,
                   }}
                 >
                   <button
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    key={index}
-                    className={`${styles.dot} ${
-                      shouldShowLarge ? styles.active : styles.disabled
+                    className={`${styles["dots-btn"]} ${
+                      shouldShowLarge
+                        ? styles["dots-btn_active"]
+                        : styles["dots-btn_disabled"]
                     }`}
                     onClick={() => onDotClick(index)}
                   >
-                    {/* {showNumber ? index + 1 : ""} */}
                     <span
-                      className={`${styles.dotNumber} ${
-                        showNumber ? styles.visible : ""
+                      className={`${styles["dots-btn-text"]} ${
+                        shouldShowLarge && styles["dots-btn-text_visible"]
                       }`}
                     >
                       {index + 1}
                     </span>
                   </button>
                   {isActive && (
-                    <span className={styles["theme"]}>
+                    <span className={styles["dots-theme"]}>
                       {periodsData[activeIndex].theme}
                     </span>
                   )}
@@ -138,7 +115,7 @@ const RingDate = (props: {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

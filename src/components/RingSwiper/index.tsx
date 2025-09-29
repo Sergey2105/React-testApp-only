@@ -10,23 +10,25 @@ import RingDate from "../RingDate";
 import InfoSwiper from "../InfoSwiper";
 import { Navigation, Pagination } from "swiper/modules";
 import SwiperCore from "swiper";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-const RingSwiper = (props: RingSwiperProps) => {
+const RingSwiper = (props: IRingSwiper) => {
   const { periodsData } = props;
   const [activeIndex, setActiveIndex] = useState(0);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperCore>(null);
+  const Tablet = useMediaQuery(1024);
 
   const padNumber = (num: number, length: number = 2) => {
     return num.toString().padStart(length, "0");
   };
 
   useEffect(() => {
-    if (!wrapperRef.current) return;
+    if (!infoRef.current) return;
 
     gsap.fromTo(
-      wrapperRef.current,
-      { opacity: 0, y: 10 },
+      infoRef.current,
+      { opacity: 0, y: Tablet ? 10 : 0 },
       { opacity: 1, y: 0, duration: 2, ease: "power3.out" }
     );
   }, [activeIndex]);
@@ -44,10 +46,10 @@ const RingSwiper = (props: RingSwiperProps) => {
         slidesPerView={1}
         spaceBetween={20}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        pagination={{ el: ".custom-pagination", clickable: true }}
+        pagination={{ el: ".pagination", clickable: true }}
         navigation={{
-          nextEl: ".custom-next",
-          prevEl: ".custom-prev",
+          nextEl: ".next",
+          prevEl: ".prev",
         }}
         allowTouchMove={true}
       >
@@ -65,38 +67,37 @@ const RingSwiper = (props: RingSwiperProps) => {
         />
       </div>
       <div className={styles["wrapper"]}>
-        <div ref={wrapperRef}>
+        <div ref={infoRef}>
           <span className={styles["theme"]}>
             {periodsData[activeIndex].theme}
           </span>
           <div className={styles["line"]}></div>
-
           <div className={styles["info"]}>
             <InfoSwiper data={periodsData[activeIndex].info} />
           </div>
         </div>
         <div className={styles["footer"]}>
           <div className={styles["control"]}>
-            <div className={styles["page"]}>
-              <span className={styles["number"]}>
+            <div className={styles["pages"]}>
+              <span className={styles["pages-number"]}>
                 {padNumber(activeIndex + 1)}
               </span>
-              <span className={styles["slash"]}>/</span>
-              <span className={styles["number"]}>
+              <span className={styles["pages-slash"]}>/</span>
+              <span className={styles["pages-number"]}>
                 {padNumber(periodsData.length)}
               </span>
             </div>
             <div className={styles["navigation"]}>
-              <button className={`${styles.prev} custom-prev`}>
+              <button className={`${styles["navigation-prev"]} prev`}>
                 <Arrow />
               </button>
-              <button className={`${styles.next} custom-next`}>
+              <button className={`${styles["navigation-next"]} next`}>
                 <Arrow />
               </button>
             </div>
           </div>
 
-          <div className={`${styles.pagination} custom-pagination`}></div>
+          <div className={`${styles["pagination"]} pagination`}></div>
         </div>
       </div>
     </div>

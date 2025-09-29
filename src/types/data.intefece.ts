@@ -29,6 +29,14 @@ interface IRingData {
   dateEnd: number;
 }
 
-interface RingSwiperProps {
+interface IRingSwiper {
   periodsData: IData[];
+}
+
+interface IRingDate {
+  dateStart: number;
+  dateEnd: number;
+  periodsData: IData[];
+  activeIndex: number;
+  onDotClick: (index: number) => void;
 }

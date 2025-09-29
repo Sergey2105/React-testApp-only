@@ -5,12 +5,12 @@ import styles from "./index.module.scss";
 const DatePage = () => {
   return (
     <div className={styles["main"]}>
-      <div className={styles["center-line"]}></div>
+      <div className={styles["main-line"]}></div>
 
-      <h1 className={styles["title"]}>
+      <h1 className={styles["main-title"]}>
         Исторические <br /> даты
       </h1>
-      <div className={styles["date"]}>
+      <div className={styles["main-date"]}>
         <RingSwiper periodsData={periodsData} />
       </div>
     </div>

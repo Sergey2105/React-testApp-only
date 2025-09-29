@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./index.module.scss";
-import { gsap } from "gsap";
 import { Navigation } from "swiper/modules";
 import InfoElement from "../InfoElement";
 import SwiperCore from "swiper";
@@ -10,7 +9,7 @@ import ArrowInfo from "../../assets/icon/arrow-info.svg";
 const InfoSwiper = (props: IInfoSwiper) => {
   const { data } = props;
   const swiperRef = useRef<SwiperCore>(null);
-  const [isBeginning, setIsBeginning] = useState(true);
+  const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
   useEffect(() => {
@@ -22,15 +21,15 @@ const InfoSwiper = (props: IInfoSwiper) => {
   return (
     <div className={styles["main"]}>
       <button
-        className={`${styles.next} ${isBeginning ? styles.disabled : ""}`}
+        className={`${styles["next"]} ${isStart && styles["disabled"]}`}
         onClick={() => swiperRef.current?.slidePrev()}
-        disabled={isBeginning}
+        disabled={isStart}
       >
         <ArrowInfo />
       </button>
 
       <button
-        className={`${styles.prev} ${isEnd ? styles.disabled : ""}`}
+        className={`${styles["prev"]} ${isEnd && styles["disabled"]}`}
         onClick={() => swiperRef.current?.slideNext()}
         disabled={isEnd}
       >
@@ -43,10 +42,10 @@ const InfoSwiper = (props: IInfoSwiper) => {
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         allowTouchMove={true}
         onProgress={(swiper) => {
-          setIsBeginning(swiper.isBeginning);
+          setIsStart(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
-        className={styles.swiper}
+        className={styles["swiper"]}
         breakpoints={{
           0: {
             slidesPerView: 1.5,
@@ -59,7 +58,7 @@ const InfoSwiper = (props: IInfoSwiper) => {
         }}
       >
         {data.map((el, i) => (
-          <SwiperSlide key={`infoSwiper-${i}`} className={styles.slide}>
+          <SwiperSlide key={`infoSwiper-${i}`}>
             <InfoElement date={el.date} text={el.text} />
           </SwiperSlide>
         ))}
