@@ -34,8 +34,6 @@ interface IRingSwiper {
 }
 
 interface IRingDate {
-  dateStart: number;
-  dateEnd: number;
   periodsData: IData[];
   activeIndex: number;
   onDotClick: (index: number) => void;

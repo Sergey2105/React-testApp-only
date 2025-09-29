@@ -59,8 +59,6 @@ const RingSwiper = (props: IRingSwiper) => {
       </Swiper>
       <div className={styles["date"]}>
         <RingDate
-          dateStart={periodsData[activeIndex].dateStart}
-          dateEnd={periodsData[activeIndex].dateEnd}
           periodsData={periodsData}
           activeIndex={activeIndex}
           onDotClick={(index) => swiperRef.current?.slideTo(index)}

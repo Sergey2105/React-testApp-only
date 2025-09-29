@@ -6,7 +6,7 @@ import AnimatedNumber from "../AnimatedNumber";
 const TARGET_POSITION = 60;
 
 const RingDate = (props: IRingDate) => {
-  const { dateStart, dateEnd, periodsData, activeIndex, onDotClick } = props;
+  const { periodsData, activeIndex, onDotClick } = props;
   const buttonsRef = useRef<HTMLDivElement>(null);
 
   const [finishedIndex, setFinishedIndex] = useState<number | null>(null);
@@ -43,6 +43,13 @@ const RingDate = (props: IRingDate) => {
       rotation: newRotation,
       duration: 2,
       ease: "power2.out",
+      onUpdate: () => {
+        const current = gsap.getProperty(
+          buttonsRef.current,
+          "rotation"
+        ) as number;
+        setCurrentRotation(current);
+      },
       onComplete: () => {
         setFinishedIndex(slideIndex);
         setCurrentRotation(newRotation);
@@ -54,13 +61,13 @@ const RingDate = (props: IRingDate) => {
     <div className={styles["date"]}>
       <div className={styles["line"]}></div>
       <AnimatedNumber
-        targetValue={dateStart}
+        targetValue={periodsData[activeIndex].dateStart}
         duration={2}
         ease="power3.out"
         className={styles["date-start"]}
       />
       <AnimatedNumber
-        targetValue={dateEnd}
+        targetValue={periodsData[activeIndex].dateEnd}
         duration={2}
         ease="power3.out"
         className={styles["date-end"]}
