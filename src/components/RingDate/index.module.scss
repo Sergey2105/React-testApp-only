@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: center;
   gap: 40px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     gap: 90px;
   }
   &-start {
@@ -12,7 +12,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     color: #5d5fef;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
       font-size: 200px;
       line-height: 160px;
     }
@@ -22,7 +22,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     color: #ef5da8;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
       font-size: 200px;
       line-height: 160px;
     }
@@ -34,7 +34,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: block;
   }
 }
@@ -72,6 +72,15 @@
 
     transition: all 0.3s ease;
     transform-origin: center center;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+    }
     &_active {
       width: 56px;
       height: 56px;
@@ -124,7 +133,7 @@
   width: calc(100% + 160px);
   height: 1px;
   background-color: #c7cdd9;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: block;
   }
 }

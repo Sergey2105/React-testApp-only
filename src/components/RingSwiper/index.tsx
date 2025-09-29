@@ -28,7 +28,7 @@ const RingSwiper = (props: IRingSwiper) => {
 
     gsap.fromTo(
       infoRef.current,
-      { opacity: 0, y: Tablet ? 10 : 0 },
+      { opacity: 0, y: Tablet ? 0 : 10 },
       { opacity: 1, y: 0, duration: 2, ease: "power3.out" }
     );
   }, [activeIndex]);

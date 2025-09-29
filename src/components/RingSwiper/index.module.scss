@@ -23,7 +23,7 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
       height: 50px;
       width: 50px;
       svg {
@@ -44,7 +44,7 @@
   flex-direction: column;
   gap: 10px;
   width: fit-content;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     gap: 20px;
   }
 }
@@ -69,13 +69,13 @@
 .line {
   height: 1px;
   background-color: #c7cdd9;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 }
 .date {
   margin: 50px 0;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     margin: 90px 0 130px 0;
   }
 }
@@ -85,7 +85,7 @@
   overflow: hidden;
   max-height: 115px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     margin: 0;
     overflow: visible;
     max-height: 135px;
@@ -99,7 +99,7 @@
   color: #42567a;
   margin-bottom: 16px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 }
@@ -127,14 +127,14 @@
       }
     }
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 }
 .footer {
   position: relative;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     margin: 0;
     width: fit-content;
   }
@@ -143,7 +143,7 @@
   display: flex;
   flex-direction: column;
   gap: 35px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: column-reverse;
     gap: 50px;
   }

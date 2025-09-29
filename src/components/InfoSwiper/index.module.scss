@@ -7,7 +7,7 @@
   &:active {
     cursor: grabbing;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     padding: 0 !important;
   }
 }
@@ -15,7 +15,7 @@
 .next,
 .prev {
   display: none;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     position: absolute;
     cursor: pointer;
     top: 50%;

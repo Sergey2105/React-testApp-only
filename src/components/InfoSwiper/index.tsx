@@ -51,7 +51,7 @@ const InfoSwiper = (props: IInfoSwiper) => {
             slidesPerView: 1.5,
             spaceBetween: 25,
           },
-          768: {
+          1024: {
             spaceBetween: 80,
             slidesPerView: 3,
           },
