@@ -12,28 +12,31 @@
   }
 }
 .slide {
-  height: 80px !important;
+  // height: 115px !important;
   @media screen and (min-width: 768px) {
-    height: 135px !important;
+    // height: 135px !important;
   }
 }
 .next,
 .prev {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  display: none;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
 
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #fff;
-  box-shadow: 0 0 15px 0 rgba(56, 119, 238, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: 0 0 15px 0 rgba(56, 119, 238, 0.1);
+  }
 }
 .prev {
   right: -60px;

@@ -74,12 +74,16 @@
   }
 }
 .date {
-  margin: 56px 0;
+  margin: 50px 0;
+  @media screen and (min-width: 768px) {
+    margin: 130px 0;
+  }
 }
 .info {
   margin: 0 -20px;
   margin-top: 20px;
   overflow: hidden;
+  min-height: 150px;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -128,18 +132,18 @@
 }
 .footer {
   position: relative;
-  width: 280px;
-  margin: 0 auto;
+  width: 100%;
   @media screen and (min-width: 768px) {
     margin: 0;
+    width: fit-content;
   }
 }
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 35px;
   @media screen and (min-width: 768px) {
     flex-direction: column-reverse;
-    gap: 56px;
+    gap: 50px;
   }
 }

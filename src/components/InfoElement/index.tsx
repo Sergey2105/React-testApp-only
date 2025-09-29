@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 
 const InfoElement = (props: IInfoElement) => {

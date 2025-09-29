@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { Navigation } from "swiper/modules";
 import InfoElement from "../InfoElement";
 import SwiperCore from "swiper";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
 import ArrowInfo from "../../assets/icon/arrow-info.svg";
 
 const InfoSwiper = (props: IInfoSwiper) => {
@@ -13,7 +12,6 @@ const InfoSwiper = (props: IInfoSwiper) => {
   const swiperRef = useRef<SwiperCore>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const Tablet = useMediaQuery(768.9);
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -23,24 +21,22 @@ const InfoSwiper = (props: IInfoSwiper) => {
 
   return (
     <div className={styles["main"]}>
-      {Tablet && (
-        <button
-          className={`${styles.next} ${isBeginning ? styles.disabled : ""}`}
-          onClick={() => swiperRef.current?.slidePrev()}
-          disabled={isBeginning}
-        >
-          <ArrowInfo />
-        </button>
-      )}
-      {Tablet && (
-        <button
-          className={`${styles.prev} ${isEnd ? styles.disabled : ""}`}
-          onClick={() => swiperRef.current?.slideNext()}
-          disabled={isEnd}
-        >
-          <ArrowInfo />
-        </button>
-      )}
+      <button
+        className={`${styles.next} ${isBeginning ? styles.disabled : ""}`}
+        onClick={() => swiperRef.current?.slidePrev()}
+        disabled={isBeginning}
+      >
+        <ArrowInfo />
+      </button>
+
+      <button
+        className={`${styles.prev} ${isEnd ? styles.disabled : ""}`}
+        onClick={() => swiperRef.current?.slideNext()}
+        disabled={isEnd}
+      >
+        <ArrowInfo />
+      </button>
+
       <Swiper
         modules={[Navigation]}
         slidesPerView="auto"

@@ -9,11 +9,13 @@ import { gsap } from "gsap";
 import RingDate from "../RingDate";
 import InfoSwiper from "../InfoSwiper";
 import { Navigation, Pagination } from "swiper/modules";
+import SwiperCore from "swiper";
 
 const RingSwiper = (props: RingSwiperProps) => {
   const { periodsData } = props;
   const [activeIndex, setActiveIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<SwiperCore>(null);
 
   const padNumber = (num: number, length: number = 2) => {
     return num.toString().padStart(length, "0");
@@ -25,7 +27,7 @@ const RingSwiper = (props: RingSwiperProps) => {
     gsap.fromTo(
       wrapperRef.current,
       { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
+      { opacity: 1, y: 0, duration: 2, ease: "power3.out" }
     );
   }, [activeIndex]);
 
@@ -41,6 +43,7 @@ const RingSwiper = (props: RingSwiperProps) => {
         onSlideChange={handleSlideChange}
         slidesPerView={1}
         spaceBetween={20}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         pagination={{ el: ".custom-pagination", clickable: true }}
         navigation={{
           nextEl: ".custom-next",
@@ -56,6 +59,9 @@ const RingSwiper = (props: RingSwiperProps) => {
         <RingDate
           dateStart={periodsData[activeIndex].dateStart}
           dateEnd={periodsData[activeIndex].dateEnd}
+          periodsData={periodsData}
+          activeIndex={activeIndex}
+          onDotClick={(index) => swiperRef.current?.slideTo(index)}
         />
       </div>
       <div className={styles["wrapper"]}>
