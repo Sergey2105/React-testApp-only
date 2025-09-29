@@ -2,7 +2,7 @@ const periodsData = [
   {
     dateStart: 1990,
     dateEnd: 1995,
-    theme: "Расцвет персональных компьютеров",
+    theme: "ПК",
     info: [
       {
         date: 1990,
@@ -33,7 +33,7 @@ const periodsData = [
   {
     dateStart: 1996,
     dateEnd: 2001,
-    theme: "Эпоха интернета и науки",
+    theme: "Интернет",
     info: [
       {
         date: 1996,
@@ -64,7 +64,7 @@ const periodsData = [
   {
     dateStart: 2002,
     dateEnd: 2007,
-    theme: "Рождение цифровой эпохи",
+    theme: "Цифровизация",
     info: [
       {
         date: 2002,
@@ -95,7 +95,7 @@ const periodsData = [
   {
     dateStart: 2008,
     dateEnd: 2013,
-    theme: "Новые технологии и космос",
+    theme: "Технологии",
     info: [
       {
         date: 2008,
@@ -126,7 +126,7 @@ const periodsData = [
   {
     dateStart: 2014,
     dateEnd: 2019,
-    theme: "Прорывы в науке и технологиях",
+    theme: "Прорывы",
     info: [
       {
         date: 2014,
@@ -157,7 +157,7 @@ const periodsData = [
   {
     dateStart: 2020,
     dateEnd: 2025,
-    theme: "Будущее, инновации и вызовы",
+    theme: "Будущее",
     info: [
       {
         date: 2020,
