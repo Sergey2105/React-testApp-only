@@ -39,6 +39,7 @@ const InfoSwiper = (props: IInfoSwiper) => {
       <Swiper
         modules={[Navigation]}
         slidesPerView="auto"
+        watchSlidesProgress={true}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         allowTouchMove={true}
         onProgress={(swiper) => {
@@ -51,6 +52,10 @@ const InfoSwiper = (props: IInfoSwiper) => {
             slidesPerView: 1.5,
             spaceBetween: 25,
           },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 25,
+          },
           1024: {
             spaceBetween: 80,
             slidesPerView: 3,
@@ -58,7 +63,7 @@ const InfoSwiper = (props: IInfoSwiper) => {
         }}
       >
         {data.map((el, i) => (
-          <SwiperSlide key={`infoSwiper-${i}`}>
+          <SwiperSlide key={`infoSwiper-${i}`} className={styles["slide"]}>
             <InfoElement date={el.date} text={el.text} />
           </SwiperSlide>
         ))}

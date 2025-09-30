@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect, useRef } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import styles from "./index.module.scss";
 import Arrow from "../../assets/icon/arrow.svg";
 import "swiper/css";
@@ -17,7 +17,7 @@ const RingSwiper = (props: IRingSwiper) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const infoRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperCore>(null);
-  const Tablet = useMediaQuery(1024);
+  const Tablet = useMediaQuery(768);
 
   const padNumber = (num: number, length: number = 2) => {
     return num.toString().padStart(length, "0");
@@ -31,12 +31,20 @@ const RingSwiper = (props: IRingSwiper) => {
       { opacity: 0, y: Tablet ? 0 : 10 },
       { opacity: 1, y: 0, duration: 2, ease: "power3.out" }
     );
-  }, [activeIndex]);
+  }, [activeIndex, Tablet]);
 
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper: SwiperClass) => {
     const newIndex = swiper.activeIndex;
     setActiveIndex(newIndex);
   };
+
+  const handleDotClick = (index: number) => {
+    swiperRef.current?.slideTo(index);
+  };
+
+  if (Tablet === undefined) {
+    return null;
+  }
 
   return (
     <div className={styles["main"]}>
@@ -61,7 +69,7 @@ const RingSwiper = (props: IRingSwiper) => {
         <RingDate
           periodsData={periodsData}
           activeIndex={activeIndex}
-          onDotClick={(index) => swiperRef.current?.slideTo(index)}
+          onDotClick={handleDotClick}
         />
       </div>
       <div className={styles["wrapper"]}>

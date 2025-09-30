@@ -38,3 +38,9 @@ interface IRingDate {
   activeIndex: number;
   onDotClick: (index: number) => void;
 }
+
+interface ICircleDots {
+  periodsData: IData[];
+  activeIndex: number;
+  onDotClick: (index: number) => void;
+}

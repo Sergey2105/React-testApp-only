@@ -142,7 +142,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 75px;
   @media screen and (min-width: 1024px) {
     flex-direction: column-reverse;
     gap: 50px;

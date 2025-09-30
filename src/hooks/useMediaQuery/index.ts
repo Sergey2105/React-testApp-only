@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 export const useMediaQuery = (width: string | number, queryType = "min") => {
   const [targetReached, setTargetReached] = useState<boolean>();
 
-  const updateTarget = useCallback((e) => {
+  const updateTarget = useCallback((e: MediaQueryListEvent) => {
     if (e.matches) {
       setTargetReached(true);
     } else {
@@ -13,12 +13,12 @@ export const useMediaQuery = (width: string | number, queryType = "min") => {
 
   useEffect(() => {
     const media = window.matchMedia(`(${queryType}-width: ${width}px)`);
-    media.addListener(updateTarget);
-
     setTargetReached(media.matches);
 
+    media.addEventListener("change", updateTarget);
+
     return () => {
-      media.removeListener(updateTarget);
+      media.removeEventListener("change", updateTarget);
     };
   }, []);
 

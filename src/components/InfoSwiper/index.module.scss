@@ -45,3 +45,20 @@
 .disabled {
   display: none;
 }
+.slide {
+  transition: opacity 0.3s ease;
+}
+@media (min-width: 768px) {
+  :global(.swiper-slide) {
+    opacity: 1 !important;
+  }
+}
+@media (max-width: 768px) {
+  :global(.swiper-slide-active) {
+    opacity: 1;
+  }
+  :global(.swiper-slide-next),
+  :global(.swiper-slide-prev) {
+    opacity: 0.4;
+  }
+}

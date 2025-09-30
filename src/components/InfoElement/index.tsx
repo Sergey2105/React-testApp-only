@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./index.module.scss";
 
 const InfoElement = (props: IInfoElement) => {
@@ -10,4 +11,4 @@ const InfoElement = (props: IInfoElement) => {
     </div>
   );
 };
-export default InfoElement;
+export default React.memo(InfoElement);
